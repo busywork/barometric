@@ -6,7 +6,10 @@ const Navigation = () => {
   return (
     <Navbar className="justify-content-center" collapseOnSelect expand="lg">
       <Navbar.Brand>
-        <HeaderText>BAROMETRIC</HeaderText>
+        <HeaderText>
+          <i className="wi wi-cloud-up" />
+          BAROMETRIC
+        </HeaderText>
       </Navbar.Brand>
     </Navbar>
   );
