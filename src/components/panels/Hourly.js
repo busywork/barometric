@@ -35,6 +35,7 @@ const Hourly = () => {
 export default Hourly;
 
 const Header = styled.h4`
+  font-weight: bold;
   color: #ffffff;
   margin: 5px 15px;
 `;

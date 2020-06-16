@@ -18,5 +18,6 @@ const Navigation = () => {
 export default Navigation;
 
 const HeaderText = styled.h1`
+  font-weight: bold;
   color: #ffffff;
 `;
