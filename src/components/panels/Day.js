@@ -52,41 +52,40 @@ const Day = props => {
 export default Day;
 
 const Panel = styled.div`
-  height: 300px;
-  margin-bottom: 21px;
   background-color: #ebebeb;
   border: 5px solid #ffffff;
+  margin-bottom: 15px;
 `;
 
 const PanelHead = styled.div`
   background-color: #000000;
   color: #ffffff;
-  padding: 10px 15px;
+  padding: 5px;
 `;
 
-const HeadText = styled.h5`
-  font-weight: bold;
+const HeadText = styled.h4`
   color: #ffffff;
-  margin: 10px;
+  font-weight: bold;
+  margin: 5px;
 `;
 
 const PanelBody = styled.div`
-  padding: 15px;
+  font-size: 1em;
+  padding: 10px;
 `;
 
 const HighTemp = styled.span`
-  font-weight: bold;
-  font-size: 1.25em;
   color: #fca311;
+  font-size: 1.25em;
+  font-weight: bold;
 `;
 
 const LowTemp = styled.span`
-  font-weight: bold;
-  font-size: 1.25em;
   color: #5bc0de;
+  font-size: 1.25em;
+  font-weight: bold;
 `;
 
 const Summary = styled.span`
   font-weight: bold;
-  font-size: 1em;
 `;

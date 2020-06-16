@@ -10,7 +10,7 @@ import Hour from './Hour';
 const Hourly = () => {
   const hourly = useSelector(state =>
     state.weather.hourly
-      ? { ...state.weather.hourly, data: state.weather.hourly.data.slice(1, 9) }
+      ? { ...state.weather.hourly, data: state.weather.hourly.data.slice(1, 7) }
       : null
   );
 
@@ -21,7 +21,7 @@ const Hourly = () => {
       <Row>
         <Header>Hourly</Header>
         <ReactAnimatedWeather icon={formatIcon(hourly.icon)} color={`#ebebeb`} size={32} />
-        <SubHeader>{hourly.summary}</SubHeader>
+        <Summary>{hourly.summary}</Summary>
       </Row>
       <Row>
         {hourly.data.map((hour, idx) => (
@@ -39,7 +39,7 @@ const Header = styled.h4`
   margin: 5px 15px;
 `;
 
-const SubHeader = styled.span`
+const Summary = styled.span`
   color: #ffffff;
-  margin: 5px 15px;
+  margin: 10px 15px;
 `;

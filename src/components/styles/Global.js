@@ -15,8 +15,8 @@ canvas {
   display: block;
   margin-right: 15px;
   margin-bottom: 15px;
-  float: left;
   padding-top: 5px;
+  float: left;
 }
 
 `;

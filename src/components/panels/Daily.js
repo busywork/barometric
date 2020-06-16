@@ -21,7 +21,7 @@ const Daily = () => {
       <Row>
         <Header>Daily</Header>
         <ReactAnimatedWeather icon={formatIcon(daily.icon)} color={`#ebebeb`} size={32} />
-        <SubHeader>{daily.summary}</SubHeader>
+        <Summary>{daily.summary}</Summary>
       </Row>
       <Row>
         {daily.data.map((day, idx) => (
@@ -39,7 +39,7 @@ const Header = styled.h4`
   margin: 5px 15px;
 `;
 
-const SubHeader = styled.span`
+const Summary = styled.span`
   color: #ffffff;
-  margin: 5px 15px;
+  margin: 10px 15px;
 `;
