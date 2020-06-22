@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
+
 import { fetchWeather } from './redux/weather';
 
 import './App.css';
@@ -12,7 +13,7 @@ import Footer from './components/Footer';
 
 const App = () => {
   const dispatch = useDispatch();
-  const location = { lat: 41.8781, lng: -87.6298 };
+  const location = { lat: 41.8781136, lng: -87.6297982 };
   useEffect(() => {
     dispatch(fetchWeather(location));
   });
