@@ -72,6 +72,7 @@ canvas {
 /**
  * A geosuggest item
  */
+
 .geosuggest__item {
   font-size: 1rem;
   padding: .5em .65em;
@@ -93,8 +94,6 @@ canvas {
 .geosuggest__item__matched-text {
   font-weight: bold;
 }
-
-
 
 `;
 

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Alert, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import Geosuggest from 'react-geosuggest';
@@ -7,27 +7,31 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { fetchWeather } from '../../redux/weather';
+import { errorHandler, clearErrors } from '../../redux/errors';
 
 const Search = () => {
+  const geosuggestEl = useRef(null);
   const dispatch = useDispatch();
-  const [error, setError] = useState(undefined);
+  const errors = useSelector(state => (state.errors.length ? state.errors : null));
 
   const onSuggestSelect = e => {
-    setError(undefined);
-    if (e) dispatch(fetchWeather(e.location));
+    if (e) {
+      dispatch(clearErrors());
+      dispatch(fetchWeather(e.location, e.label));
+    }
   };
 
-  const getPosition = e => {
-    setError(undefined);
+  const getPosition = () => {
+    dispatch(clearErrors());
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         ({ coords }) => {
+          geosuggestEl.current.clear();
           dispatch(fetchWeather({ lat: coords.latitude, lng: coords.longitude }));
         },
         err => {
-          setError(err.message);
-        },
-        { enableHighAccuracy: true }
+          dispatch(errorHandler(err.message));
+        }
       );
     }
   };
@@ -35,7 +39,7 @@ const Search = () => {
   return (
     <Col>
       <SearchBar>
-        <Geosuggest onSuggestSelect={onSuggestSelect} className="mr-auto" />
+        <Geosuggest ref={geosuggestEl} onSuggestSelect={onSuggestSelect} className="mr-auto" />
         <FontAwesomeIcon
           onClick={getPosition}
           className="text-white my-4 mx-4"
@@ -43,7 +47,12 @@ const Search = () => {
           size="2x"
         />
       </SearchBar>
-      {error && <Alert variant="warning">{error}</Alert>}
+      {errors &&
+        errors.map((error, idx) => (
+          <Alert key={idx} variant="danger">
+            {error}
+          </Alert>
+        ))}
     </Col>
   );
 };

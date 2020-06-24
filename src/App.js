@@ -8,7 +8,7 @@ import './App.css';
 
 import GlobalStyle from './components/styles/Global';
 import Navigation from './components/Navigation';
-import Home from './pages/Home';
+import Home from './containers/Home';
 import Footer from './components/Footer';
 
 const App = () => {
