@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Alert, Col } from 'react-bootstrap';
+import { Alert, Col, Row } from 'react-bootstrap';
 import styled from 'styled-components';
 import Geosuggest from 'react-geosuggest';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -38,26 +38,47 @@ const Search = () => {
 
   return (
     <Col>
-      <SearchBar>
-        <Geosuggest ref={geosuggestEl} onSuggestSelect={onSuggestSelect} className="mr-auto" />
-        <FontAwesomeIcon
-          onClick={getPosition}
-          className="text-white my-4 mx-4"
-          icon={faMapMarkerAlt}
-          size="2x"
-        />
-      </SearchBar>
-      {errors &&
-        errors.map((error, idx) => (
-          <Alert key={idx} variant="danger">
-            {error}
-          </Alert>
-        ))}
+      <Row>
+        <Col>
+          <Credits>
+            powered by Dark Sky & Google
+            <i className="wi wi-cloudy-gusts mx-2" />
+          </Credits>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <SearchBar>
+            <Geosuggest ref={geosuggestEl} onSuggestSelect={onSuggestSelect} className="mr-auto" />
+            <FontAwesomeIcon
+              onClick={getPosition}
+              className="text-white my-4 mx-4"
+              icon={faMapMarkerAlt}
+              size="2x"
+            />
+          </SearchBar>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          {errors &&
+            errors.map((error, idx) => (
+              <Alert key={idx} variant="danger">
+                {error}
+              </Alert>
+            ))}
+        </Col>
+      </Row>
     </Col>
   );
 };
 
 export default Search;
+
+const Credits = styled.span`
+  color: #ffffff;
+  float: right;
+`;
 
 const SearchBar = styled.div`
   display: flex;
