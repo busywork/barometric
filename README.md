@@ -1,3 +1,13 @@
+# Barometric
+
+A simple weather application that displays the current weather, daily forecasts, and hourly forecasts based on geolocation or search.
+
+This project utilizes [Dark Sky API](https://darksky.net/dev)
+
+## Live Demo
+
+Live Demo can be found [here](https://barometric.io/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
