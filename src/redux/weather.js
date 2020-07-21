@@ -33,8 +33,6 @@ export const fetchWeather = coords => dispatch => {
   dispatch(fetchData());
   axios
     .get(`${DARKSKY_API_URL}lat=${lat}&lng=${lng}`)
-    .then(res => {
-      dispatch(fetchDataSuccess(res.data));
-    })
+    .then(res => dispatch(fetchDataSuccess(res.data)))
     .catch(err => dispatch(errorHandler(err.message)));
 };

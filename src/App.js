@@ -1,33 +1,29 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-
-import { fetchWeather } from './redux/weather';
+import { ThemeProvider } from 'styled-components';
 
 import './App.css';
 
-import GlobalStyle from './components/styles/Global';
+import useDarkMode from './utils/useDarkMode';
+import { GlobalStyles, light, dark } from './styles';
+import Toggle from './components/Toggle';
 import Navigation from './components/Navigation';
 import Home from './containers/Home';
 import Footer from './components/Footer';
 
-const App = () => {
-  const dispatch = useDispatch();
-  const location = { lat: 41.8781136, lng: -87.6297982 };
-  useEffect(() => {
-    dispatch(fetchWeather(location));
-  });
+export default () => {
+  const darkMode = useDarkMode();
+  const theme = !darkMode.value ? light : dark;
 
   return (
-    <>
-      <GlobalStyle />
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Toggle />
       <Navigation />
       <Switch>
         <Route path="/" component={Home}></Route>
       </Switch>
       <Footer />
-    </>
+    </ThemeProvider>
   );
 };
-
-export default App;

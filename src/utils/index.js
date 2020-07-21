@@ -1,14 +1,8 @@
-export const formatIcon = str => {
-  return str.toUpperCase().replace(/-/g, '_');
-};
+export const formatIcon = str => str.toUpperCase().replace(/-/g, '_');
 
-export const formatPercent = str => {
-  return (parseFloat(str) * 100).toFixed(0);
-};
+export const formatPercent = str => (parseFloat(str) * 100).toFixed(0);
 
-export const formatMbar = str => {
-  return parseFloat(str) / 33.864;
-};
+export const formatMbar = str => parseFloat(str) / 33.864;
 
 export const formatDir = deg => {
   const directions = [

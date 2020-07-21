@@ -1,21 +1,12 @@
 import React from 'react';
 import { Container, Col, Row } from 'react-bootstrap';
-import styled from 'styled-components';
 
-const Footer = () => {
+export default () => {
   return (
     <Container>
       <Row>
-        <Col className="d-flex justify-content-center">
-          <FooterText>© 2020 BAROMETRIC</FooterText>
-        </Col>
+        <Col className="d-flex justify-content-center mt-5">&#169; 2020 BAROMETRIC</Col>
       </Row>
     </Container>
   );
 };
-
-export default Footer;
-
-const FooterText = styled.span`
-  color: #ffffff;
-`;

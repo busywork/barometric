@@ -10,13 +10,10 @@ import Daily from '../components/panels/Daily';
 
 const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-const Home = () => {
+export default () => {
   const [loaded, setLoaded] = useState(false);
   const isLoading = useSelector(state => state.weather.isLoading);
-
-  const init = () => {
-    setLoaded(true);
-  };
+  const init = () => setLoaded(true);
 
   useEffect(() => {
     window.init = init;
@@ -25,29 +22,27 @@ const Home = () => {
     document.querySelector(`body`).insertAdjacentElement(`beforeend`, scriptElement);
   }, []);
 
-  const renderPanels = () => {
-    return (
-      <>
-        <Row>
-          <Current />
-          <Today />
-        </Row>
-        <Row>
-          <Hourly />
-        </Row>
-        <Row>
-          <Daily />
-        </Row>
-      </>
-    );
-  };
+  const renderPanels = () => (
+    <>
+      <Row>
+        <Current />
+        <Today />
+      </Row>
+      <Row>
+        <Hourly />
+      </Row>
+      <Row>
+        <Daily />
+      </Row>
+    </>
+  );
 
   return (
     <Container>
       <Row>{loaded && <Search />}</Row>
       {isLoading ? (
         <Row className="justify-content-center my-4">
-          <Spinner animation="border" variant="light" />
+          <Spinner animation="border" variant="dark" />
         </Row>
       ) : (
         renderPanels()
@@ -55,5 +50,3 @@ const Home = () => {
     </Container>
   );
 };
-
-export default Home;
