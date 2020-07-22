@@ -1,9 +1,15 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import styled from 'styled-components';
+
+import { mixins } from '../styles';
 
 const StyledNav = styled.nav`
   margin-bottom: 1em;
+`;
+
+const StyledCol = styled(Col)`
+  ${mixins.flexCenter};
 `;
 
 const StyledHeading = styled.h2`
@@ -12,18 +18,20 @@ const StyledHeading = styled.h2`
 
 export default () => {
   return (
-    <Container>
+    <StyledNav>
       <Row>
-        <Col className="d-flex justify-content-center">
-          <StyledNav>
-            <StyledHeading>
-              <i className="wi wi-sprinkle mr-1" />
-              BAROMETRIC
-            </StyledHeading>
-            powered by Google &#38; Dark Sky <i className="wi wi-cloudy-gusts" />
-          </StyledNav>
-        </Col>
+        <StyledCol>
+          <StyledHeading>
+            <i className="wi wi-sprinkle mr-1" />
+            BAROMETRIC
+          </StyledHeading>
+        </StyledCol>
       </Row>
-    </Container>
+      <Row>
+        <StyledCol className="ml-3">
+          powered by Google &#38; Dark Sky <i className="wi wi-cloudy-gusts ml-1" />
+        </StyledCol>
+      </Row>
+    </StyledNav>
   );
 };

@@ -2,6 +2,8 @@ import React from 'react';
 
 import {
   Location,
+  Star,
+  Fork,
   ClearDay,
   ClearNight,
   Cloudy,
@@ -18,12 +20,17 @@ import {
   Thunderstorm,
   Tornado,
   Wind,
+  GitHub,
 } from './';
 
 export default ({ name }) => {
   switch (name) {
     case 'location':
       return <Location />;
+    case 'star':
+      return <Star />;
+    case 'fork':
+      return <Fork />;
     case 'clear-day':
       return <ClearDay />;
     case 'clear-night':
@@ -56,6 +63,8 @@ export default ({ name }) => {
       return <Tornado />;
     case 'wind':
       return <Wind />;
+    case 'github':
+      return <GitHub />;
     default:
       return null;
   }

@@ -22,4 +22,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+svg {
+  width: auto;
+}
+
 `;

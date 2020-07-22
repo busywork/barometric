@@ -1,6 +1,8 @@
 export { default as Icon } from './Icon';
 
-export { default as Location } from './location';
+export { default as Location } from './Location';
+export { default as Star } from './Star';
+export { default as Fork } from './Fork';
 
 export { default as ClearDay } from './darksky/clear-day';
 export { default as ClearNight } from './darksky/clear-night';
@@ -18,3 +20,5 @@ export { default as Snow } from './darksky/snow';
 export { default as Thunderstorm } from './darksky/thunderstorm';
 export { default as Tornado } from './darksky/tornado';
 export { default as Wind } from './darksky/wind';
+
+export { default as GitHub } from './social/GitHub';
