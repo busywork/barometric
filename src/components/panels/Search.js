@@ -103,7 +103,7 @@ export default () => {
   }, [dispatch]);
 
   return (
-    <Col>
+    <Col xs={12}>
       <Row>
         <Col className="d-flex justify-content-between align-items-center">
           <PlacesAutocomplete

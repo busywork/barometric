@@ -4,11 +4,14 @@ import styled from 'styled-components';
 import Moment from 'react-moment';
 
 import { Icon } from '../icons';
-import { fontSizes, Header, Temp } from '../../styles';
+import { fontSizes, mixins, Header, Temp } from '../../styles';
 import { formatPercent } from '../../utils';
 
-const IconWrapper = styled.div`
-  width: 64px;
+const StyledCol = styled(Col)`
+  ${mixins.flexCenter};
+  svg {
+    height: 96px;
+  }
 `;
 
 const StyledTemp = styled(Temp)`
@@ -24,16 +27,14 @@ export default props => {
         </Moment>
       </Header>
       <Row>
-        <Col xs="auto">
-          <IconWrapper>
-            <Icon name={props.icon} />
-          </IconWrapper>
-        </Col>
+        <StyledCol xs="auto">
+          <Icon name={props.icon} />
+        </StyledCol>
         <Col>
           <Row>
             <Col>
               <StyledTemp>{props.temperatureHigh.toFixed(1)}&#176;</StyledTemp>&nbsp;
-              <StyledTemp isLow={true}>{props.temperatureLow.toFixed(1)}&#176;</StyledTemp>
+              <StyledTemp secondary>{props.temperatureLow.toFixed(1)}&#176;</StyledTemp>
             </Col>
           </Row>
           <Row>

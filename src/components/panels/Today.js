@@ -5,11 +5,14 @@ import styled from 'styled-components';
 import Moment from 'react-moment';
 
 import { Icon } from '../icons';
-import { fontSizes, Header, Temp } from '../../styles';
+import { fontSizes, mixins, Header, Temp } from '../../styles';
 import { formatPercent, formatDir } from '../../utils';
 
-const IconWrapper = styled.div`
-  width: 128px;
+const StyledCol = styled(Col)`
+  ${mixins.flexCenter};
+  svg {
+    height: 128px;
+  }
 `;
 
 const StyledTemp = styled(Temp)`
@@ -30,16 +33,14 @@ export default () => {
         </Moment>
       </Header>
       <Row>
-        <Col xs={12} sm="auto" className="d-flex justify-content-center">
-          <IconWrapper>
-            <Icon name={today.icon} />
-          </IconWrapper>
-        </Col>
+        <StyledCol xs={12} sm="auto">
+          <Icon name={today.icon} />
+        </StyledCol>
         <Col>
           <Row>
             <Col>
               <StyledTemp>{today.temperatureHigh.toFixed(1)}&#176;</StyledTemp>&nbsp;
-              <StyledTemp isLow={true}>{today.temperatureLow.toFixed(1)}&#176;</StyledTemp>
+              <StyledTemp secondary>{today.temperatureLow.toFixed(1)}&#176;</StyledTemp>
             </Col>
           </Row>
           <Row>
