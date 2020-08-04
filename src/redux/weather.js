@@ -15,7 +15,7 @@ const fetchDataSuccess = weather => ({ type: FETCH_DATA_SUCCESS, weather });
 
 /* ------------         REDUCER         ------------------ */
 
-export default function reducer(state = { isLoading: false }, action) {
+export default (state = { isLoading: false }, action) => {
   switch (action.type) {
     case FETCH_DATA:
       return { ...state, isLoading: true };
@@ -24,7 +24,7 @@ export default function reducer(state = { isLoading: false }, action) {
     default:
       return state;
   }
-}
+};
 
 /* ------------       THUNK CREATORS     ------------------ */
 

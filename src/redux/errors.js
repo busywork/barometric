@@ -10,7 +10,7 @@ export const clearErrors = () => ({ type: CLEAR_ERROR });
 
 /* ------------         REDUCER         ------------------ */
 
-export default function reducer(state = [], action) {
+export default (state = [], action) => {
   switch (action.type) {
     case SET_ERROR:
       return [...state, action.error];
@@ -19,4 +19,4 @@ export default function reducer(state = [], action) {
     default:
       return state;
   }
-}
+};

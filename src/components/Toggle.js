@@ -1,20 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import useDarkMode from '../utils/useDarkMode';
-import { fontSizes } from '../styles';
+import { useDarkMode } from '../utils';
 
-const StyledContainer = styled.div`
+const Wrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin: 0 auto;
 `;
 
 const StyledButton = styled.button`
-  font-size: ${fontSizes.lg};
   background: none;
   border: none;
   color: ${({ theme, darkMode }) => (darkMode ? theme.secondary : theme.primaryAccent)};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
   cursor: pointer;
   transition: color 0.3s ease;
   &:last-child {
@@ -27,17 +25,17 @@ const StyledButton = styled.button`
 
 const ToggleControl = styled.span`
   position: relative;
-  padding: 0 4px;
   display: flex;
   align-items: center;
+  padding: 0 0.25em;
 `;
 
 const StyledInput = styled.input`
+  position: relative;
   width: 40px;
   height: 10px;
   background: ${({ theme }) => theme.primary};
-  position: relative;
-  border-radius: 5px;
+  border-radius: 0.25em;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -48,6 +46,8 @@ const StyledInput = styled.input`
     left: 30px;
   }
   & + label {
+    position: absolute;
+    left: 2px;
     display: inline-block;
     width: 18px;
     height: 18px;
@@ -55,8 +55,6 @@ const StyledInput = styled.input`
     border-radius: 50%;
     transition: all 0.3s ease;
     cursor: pointer;
-    position: absolute;
-    left: 2px;
     opacity: 0.9;
     background-color: ${({ theme }) => theme.secondary};
   }
@@ -66,8 +64,8 @@ export default () => {
   const darkMode = useDarkMode();
 
   return (
-    <StyledContainer>
-      <StyledButton darkMode={darkMode.value} onClick={darkMode.disable}>
+    <Wrapper>
+      <StyledButton aria-label="Light" darkMode={darkMode.value} onClick={darkMode.disable}>
         <i className="wi wi-day-sunny" />
       </StyledButton>
 
@@ -76,9 +74,9 @@ export default () => {
         <label />
       </ToggleControl>
 
-      <StyledButton darkMode={darkMode.value} onClick={darkMode.enable}>
+      <StyledButton aria-label="Dark" darkMode={darkMode.value} onClick={darkMode.enable}>
         <i className="wi wi-night-clear" />
       </StyledButton>
-    </StyledContainer>
+    </Wrapper>
   );
 };

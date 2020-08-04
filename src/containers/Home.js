@@ -2,11 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Container, Row, Spinner } from 'react-bootstrap';
 
-import Search from '../components/panels/Search';
-import Current from '../components/panels/Current';
-import Today from '../components/panels/Today';
-import Hourly from '../components/panels/Hourly';
-import Daily from '../components/panels/Daily';
+import Search from '../components/Search';
+import { Hero, Hourly, Daily } from '../components/sections';
 
 const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
@@ -22,11 +19,10 @@ export default () => {
     document.querySelector(`body`).insertAdjacentElement(`beforeend`, scriptElement);
   }, []);
 
-  const renderPanels = () => (
+  const render = () => (
     <>
       <Row>
-        <Current />
-        <Today />
+        <Hero />
       </Row>
       <Row>
         <Hourly />
@@ -45,7 +41,7 @@ export default () => {
           <Spinner animation="border" variant="dark" />
         </Row>
       ) : (
-        renderPanels()
+        render()
       )}
     </Container>
   );

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {
-  Location,
   Star,
   Fork,
   ClearDay,
@@ -25,8 +24,6 @@ import {
 
 export default ({ name }) => {
   switch (name) {
-    case 'location':
-      return <Location />;
     case 'star':
       return <Star />;
     case 'fork':

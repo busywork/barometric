@@ -1,6 +1,5 @@
 export { default as Icon } from './Icon';
 
-export { default as Location } from './Location';
 export { default as Star } from './Star';
 export { default as Fork } from './Fork';
 

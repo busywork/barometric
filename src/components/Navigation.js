@@ -1,37 +1,32 @@
 import React from 'react';
-import { Col, Row } from 'react-bootstrap';
 import styled from 'styled-components';
 
-import { mixins } from '../styles';
-
 const StyledNav = styled.nav`
-  margin-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0em 0;
 `;
 
-const StyledCol = styled(Col)`
-  ${mixins.flexCenter};
-`;
-
-const StyledHeading = styled.h2`
+const StyledH2 = styled.h2`
   margin-bottom: -0.25em;
 `;
 
-export default () => {
-  return (
-    <StyledNav>
-      <Row>
-        <StyledCol>
-          <StyledHeading>
-            <i className="wi wi-sprinkle mr-1" />
-            BAROMETRIC
-          </StyledHeading>
-        </StyledCol>
-      </Row>
-      <Row>
-        <StyledCol className="ml-3">
-          powered by Google &#38; Dark Sky <i className="wi wi-cloudy-gusts ml-1" />
-        </StyledCol>
-      </Row>
-    </StyledNav>
-  );
-};
+const Credits = styled.div`
+  margin-left: 1em;
+`;
+
+export default () => (
+  <StyledNav>
+    <StyledH2>
+      <i className="wi wi-sprinkle mr-1" />
+      BAROMETRIC
+    </StyledH2>
+
+    <Credits>
+      powered by Google &#38; Dark Sky
+      <i className="wi wi-cloudy-gusts ml-1" />
+    </Credits>
+  </StyledNav>
+);

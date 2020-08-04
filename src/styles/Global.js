@@ -1,10 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
+import fontsFaces from './fonts';
 
 export default createGlobalStyle`
 
+${fontsFaces};
+
 html {
   box-sizing: border-box;
-  width: 100%;
 }
 
 *,
@@ -14,16 +16,28 @@ html {
 }
 
 body {
+  margin: 0;
   background-color: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.primary};
-  font-family: 'Maven Pro';
+  font-family: 'Lato', sans-serif;
+  overflow-x: hidden;
   transition: all 0.3s linear;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-svg {
-  width: auto;
+a {
+  color: ${({ theme }) => theme.primary};
+  &:hover {
+    color: ${({ theme }) => theme.secondary};
+    text-decoration: none;
+  }
+}
+
+hr {
+  margin: .25em 0;
+  width: 100%;
+  color: ${({ theme }) => theme.secondary};
 }
 
 `;
