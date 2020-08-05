@@ -7,7 +7,7 @@ import { Label, Range } from './';
 
 const Day = styled.div`
   display: grid;
-  grid-template-columns: 2em 3em 1fr;
+  grid-template-columns: 3em 3em 1fr;
   align-items: center;
   margin: 0.25em;
   padding: 0.25em;
@@ -20,7 +20,7 @@ export default ({ time, icon, scale, temperatureHigh, temperatureLow }) => {
   return (
     <Day>
       <Label>
-        <Moment unix format="ddd">
+        <Moment unix format="MM/DD">
           {time}
         </Moment>
       </Label>

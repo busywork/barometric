@@ -1,9 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
-import fontsFaces from './fonts';
 
 export default createGlobalStyle`
-
-${fontsFaces};
 
 html {
   box-sizing: border-box;

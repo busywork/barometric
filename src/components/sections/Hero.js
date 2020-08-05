@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Moment from 'react-moment';
 
 import { Icon } from '../icons';
-import { Card, Label, Header, Temp } from '../common';
+import { Card, Header, Temp } from '../common';
 import { formatMbar } from '../../utils';
 
 // const Wrapper = styled.div`
@@ -39,6 +39,10 @@ const Row = styled.div`
   align-items: center;
 `;
 
+const Location = styled.div`
+  font-size: ${({ theme }) => theme.fontSizes.lg};
+`;
+
 export default () => {
   const { currently, today, value } = useSelector(state => {
     const currently = state.weather.currently;
@@ -52,23 +56,19 @@ export default () => {
   return (
     <Hero>
       <Column>
-        <Label sm>Current Conditions</Label>
-        {currently.summary}
+        <Header title={'CURRENT CONDITIONS'} content={currently.summary} />
         <Icon name={currently.icon} />
       </Column>
+
       <Column>
-        <Header sm>{value}</Header>
+        <Location>{value.toUpperCase()}</Location>
         <Row>
           <Card
             icon={'barometer'}
             label={'pressure'}
-            value={`${formatMbar(currently.pressure).toFixed(1)}in`}
+            value={`${formatMbar(currently.pressure).toFixed(1)}inHg`}
           />
-          <Card
-            icon={'cloudy'}
-            label={'cover'}
-            value={`${(currently.cloudCover * 100).toFixed(0)}%`}
-          />
+          <Card icon={'raindrops'} label={'dew'} value={`${currently.dewPoint.toFixed(0)}\u00b0`} />
           <Card
             icon={'humidity'}
             label={'humidity'}
@@ -116,8 +116,7 @@ export default () => {
       </Column>
 
       <Column>
-        <Label sm>Today's Forecast</Label>
-        {today.summary}
+        <Header title={`TODAY'S FORECAST`} content={today.summary} />
         <Icon name={today.icon} />
       </Column>
     </Hero>

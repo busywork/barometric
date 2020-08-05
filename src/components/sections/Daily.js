@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Col } from 'react-bootstrap';
 
-import { linearScale } from '../../utils';
 import { Day, Header } from '../common';
+import { linearScale } from '../../utils';
 
 export default () => {
   const daily = useSelector(state =>
@@ -24,7 +24,7 @@ export default () => {
 
   return (
     <Col>
-      <Header sm>Daily</Header>
+      <Header title={'DAILY'} content={daily.summary} />
       {daily && daily.data.map((day, idx) => <Day key={idx} {...day} scale={scale} />)}
     </Col>
   );

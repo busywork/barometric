@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Col } from 'react-bootstrap';
 import styled from 'styled-components';
@@ -54,7 +54,6 @@ const StyledListItem = styled.li`
   &.active {
     background: ${({ theme }) => theme.primary};
     color: ${({ theme }) => theme.background};
-    font-weight: bold;
   }
 `;
 
@@ -71,12 +70,8 @@ export default () => {
         setState({ address: '' });
         let locality = '';
         results[0].address_components.forEach(component => {
-          if (
-            component.types[0] === 'locality' ||
-            component.types[0] === 'administrative_area_level_1' ||
-            component.types[0] === 'country'
-          )
-            locality += locality.length ? `, ${component.long_name}` : component.long_name;
+          if (component.types[0] === 'locality' || component.types[0] === 'country')
+            locality += locality.length ? `, ${component.short_name}` : component.long_name;
         });
         dispatch(setValue(locality));
         return getLatLng(results[0]);
@@ -84,10 +79,6 @@ export default () => {
       .then(latLng => dispatch(fetchWeather(latLng)))
       .catch(err => dispatch(errorHandler(err.message)));
   };
-
-  useEffect(() => {
-    dispatch(fetchWeather({ lat: 41.8781136, lng: -87.6297982 }));
-  }, [dispatch]);
 
   return (
     <StyledCol xs={12}>
@@ -100,6 +91,7 @@ export default () => {
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <StyledContainer>
             <StyledInput
+              aria-label="Search"
               {...getInputProps({
                 placeholder: 'Search places...',
               })}

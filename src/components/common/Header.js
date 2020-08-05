@@ -1,12 +1,14 @@
+import React from 'react';
 import styled from 'styled-components';
 
-export default styled.div`
+const Title = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 1em;
-  font-size: ${({ sm, theme }) => (sm ? theme.fontSizes.sm : theme.fontSizes.md)};
+  color: ${({ theme }) => theme.secondary};
+  font-size: ${({ theme }) => theme.fontSizes.sm};
   &:before {
     position: relative;
     display: block;
@@ -26,3 +28,16 @@ export default styled.div`
     margin-left: 0.25em;
   }
 `;
+
+const Content = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export default ({ title, content }) => (
+  <>
+    <Title>{title}</Title>
+    <Content>{content}</Content>
+  </>
+);

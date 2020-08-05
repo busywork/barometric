@@ -70,7 +70,12 @@ export default () => {
       </StyledButton>
 
       <ToggleControl>
-        <StyledInput type="checkbox" checked={darkMode.value} onChange={darkMode.toggle} />
+        <StyledInput
+          aria-label="Toggle"
+          type="checkbox"
+          checked={darkMode.value}
+          onChange={darkMode.toggle}
+        />
         <label />
       </ToggleControl>
 

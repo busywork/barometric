@@ -2,13 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import WebFont from 'webfontloader';
 
-import store from './redux';
 import App from './App';
+import store from './redux';
 import * as serviceWorker from './serviceWorker';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/weather-icons.min.css';
+
+WebFont.load({
+  google: {
+    families: ['Lato:400&display=swap'],
+  },
+  custom: {
+    families: ['weathericons'],
+  },
+  classes: false,
+  events: false,
+});
 
 ReactDOM.render(
   <React.StrictMode>

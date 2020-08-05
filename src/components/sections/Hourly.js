@@ -15,7 +15,7 @@ export default () => {
 
   return (
     <Col>
-      <Header sm>Hourly</Header>
+      <Header title={'HOURLY'} content={hourly.summary} />
       <div className="d-flex flex-wrap justify-content-between">
         {hourly && hourly.data.map((hour, idx) => <Hour key={idx} {...hour} />)}
       </div>
