@@ -1,6 +1,7 @@
 export { default as useDarkMode } from './useDarkMode';
 export { default as useEventListener } from './useEventListener';
 export { default as usePersistedState } from './usePersistedState';
+export { default as useScript } from './useScript';
 
 export const formatIcon = str => str.toUpperCase().replace(/-/g, '_');
 

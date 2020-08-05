@@ -1,23 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Spinner } from 'react-bootstrap';
+import axios from 'axios';
 
 import Search from '../components/Search';
 import { Hero, Hourly, Daily } from '../components/sections';
+import { fetchWeather } from '../redux/weather';
+import { useScript } from '../utils';
 
 const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 export default () => {
-  const [loaded, setLoaded] = useState(false);
+  const dispatch = useDispatch();
   const isLoading = useSelector(state => state.weather.isLoading);
-  const init = () => setLoaded(true);
+
+  const [loaded, error] = useScript(
+    `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&libraries=places`
+  );
+
+  const getGeoLoc = useCallback(() => {
+    axios
+      .get('https://ipapi.co/json/')
+      .then(res =>
+        dispatch(
+          fetchWeather({
+            lat: res.data.latitude,
+            lng: res.data.longitude,
+          })
+        )
+      )
+      .catch(err => {
+        console.log(err);
+      });
+  }, [dispatch]);
 
   useEffect(() => {
-    window.init = init;
-    const scriptElement = document.createElement(`script`);
-    scriptElement.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&libraries=places&callback=init`;
-    document.querySelector(`body`).insertAdjacentElement(`beforeend`, scriptElement);
-  }, []);
+    getGeoLoc();
+  }, [getGeoLoc]);
 
   const render = () => (
     <>
@@ -35,7 +54,7 @@ export default () => {
 
   return (
     <Container>
-      <Row>{loaded && <Search />}</Row>
+      <Row>{loaded && !error && <Search />}</Row>
       {isLoading ? (
         <Row className="justify-content-center my-4">
           <Spinner animation="border" variant="dark" />
