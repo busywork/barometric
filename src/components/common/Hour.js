@@ -17,16 +17,16 @@ const Hour = styled.div`
   }
 `;
 
-export default ({ time, icon, temperature }) => {
+export default ({ dt, weather, temp }) => {
   return (
     <Hour>
       <Label>
         <Moment unix format="hhA">
-          {time}
+          {dt}
         </Moment>
       </Label>
-      <Icon name={icon} />
-      <Temp>{temperature.toFixed(0)}</Temp>
+      <Icon name={weather[0].icon} />
+      <Temp>{temp.toFixed(0)}</Temp>
       {/* <hr />
       <Label>
         <i className="wi wi-umbrella" />

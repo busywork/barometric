@@ -16,16 +16,16 @@ const Day = styled.div`
   }
 `;
 
-export default ({ time, icon, scale, temperatureHigh, temperatureLow }) => {
+export default ({ dt, weather, scale, temp }) => {
   return (
     <Day>
       <Label>
         <Moment unix format="MM/DD">
-          {time}
+          {dt}
         </Moment>
       </Label>
-      <Icon name={icon} />
-      <Range scale={scale} high={temperatureHigh.toFixed(0)} low={temperatureLow.toFixed(0)} />
+      <Icon name={weather[0].icon} />
+      <Range scale={scale} high={temp.max.toFixed(0)} low={temp.min.toFixed(0)} />
     </Day>
   );
 };

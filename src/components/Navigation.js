@@ -19,6 +19,6 @@ export default () => (
       <i className="wi wi-sprinkle mr-1" />
       BAROMETRIC
     </StyledH2>
-    powered by Google &#38; Dark Sky
+    powered by Google &#38; OpenWeather
   </StyledNav>
 );

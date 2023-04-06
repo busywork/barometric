@@ -28,33 +28,43 @@ export default ({ name }) => {
       return <Star />;
     case 'fork':
       return <Fork />;
-    case 'clear-day':
+    case '01d':
       return <ClearDay />;
-    case 'clear-night':
+    case '01n':
       return <ClearNight />;
     case 'cloudy':
       return <Cloudy />;
-    case 'drizzle':
+    case '09d':
       return <Drizzle />;
-    case 'fog':
+    case '50d':
+      return <Fog />;
+    case '50n':
       return <Fog />;
     case 'hail':
       return <Hail />;
-    case 'partly-cloudy-day':
+    case '02d':
       return <PartlyCloudyDay />;
-    case 'partly-cloudy-night':
+    case '03d':
+      return <PartlyCloudyDay />;
+    case '04d':
+      return <PartlyCloudyDay />;
+    case '02n':
+      return <PartlyCloudyNight />;
+    case '03n':
+      return <PartlyCloudyNight />;
+    case '04n':
       return <PartlyCloudyNight />;
     case 'partly-cloudy-day-rain':
       return <PartlyCloudyDayRain />;
     case 'partly-cloudy-night-rain':
       return <PartlyCloudyNightRain />;
-    case 'rain':
+    case '10d':
       return <Rain />;
     case 'sleet':
       return <Sleet />;
-    case 'snow':
+    case '13d':
       return <Snow />;
-    case 'thunderstorm':
+    case '11d':
       return <Thunderstorm />;
     case 'tornado':
       return <Tornado />;

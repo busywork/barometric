@@ -44,9 +44,9 @@ const Location = styled.div`
 `;
 
 export default () => {
-  const { currently, today, value } = useSelector(state => {
-    const currently = state.weather.currently;
-    const today = state.weather.daily ? state.weather.daily.data[0] : null;
+  const { currently, today, value } = useSelector((state) => {
+    const currently = state.weather.current;
+    const today = state.weather.daily ? state.weather.daily[0] : null;
     const value = state.search.value;
     return { currently, today, value };
   });
@@ -56,8 +56,8 @@ export default () => {
   return (
     <Hero>
       <Column>
-        <Header title={'CURRENT CONDITIONS'} content={currently.summary} />
-        <Icon name={currently.icon} />
+        <Header title={'CURRENT CONDITIONS'} content={currently.weather[0].description} />
+        <Icon name={currently.weather[0].icon} />
       </Column>
 
       <Column>
@@ -68,56 +68,52 @@ export default () => {
             label={'pressure'}
             value={`${formatMbar(currently.pressure).toFixed(1)}inHg`}
           />
-          <Card icon={'raindrops'} label={'dew'} value={`${currently.dewPoint.toFixed(0)}\u00b0`} />
           <Card
-            icon={'humidity'}
-            label={'humidity'}
-            value={`${(currently.humidity * 100).toFixed(0)}%`}
+            icon={'raindrops'}
+            label={'dew'}
+            value={`${currently.dew_point.toFixed(0)}\u00b0`}
           />
+          <Card icon={'humidity'} label={'humidity'} value={`${currently.humidity.toFixed(0)}%`} />
           <Card
             icon={'strong-wind'}
             label={'wind'}
-            value={`${currently.windSpeed.toFixed(0)}mph`}
+            value={`${currently.wind_speed.toFixed(0)}mph`}
           />
           {/* <i className={`wi wi-direction-${formatDir(currently.windBearing)}`} /> */}
         </Row>
         <Row>
           <div>
-            <Temp lg>{currently.temperature.toFixed(1)}</Temp>
+            <Temp lg>{currently.temp.toFixed(1)}</Temp>
           </div>
           <div>
             <div>
-              <Temp>{today.temperatureHigh.toFixed(1)}</Temp>
+              <Temp>{today.temp.max.toFixed(1)}</Temp>
             </div>
             <hr />
             <div>
-              <Temp secondary>{today.temperatureLow.toFixed(1)}</Temp>
+              <Temp secondary>{today.temp.min.toFixed(1)}</Temp>
             </div>
           </div>
         </Row>
         <Row>
-          <Card
-            icon={'umbrella'}
-            label={'precip'}
-            value={`${(today.precipProbability * 100).toFixed(0)}%`}
-          />
-          <Card icon={'cloudy'} label={'cover'} value={`${(today.cloudCover * 100).toFixed(0)}%`} />
+          <Card icon={'umbrella'} label={'precip'} value={`${(today.pop * 100).toFixed(0)}%`} />
+          <Card icon={'cloudy'} label={'cover'} value={`${today.clouds.toFixed(0)}%`} />
           <Card icon={'sunrise'} label={'sunrise'}>
             <Moment unix format="hh:mm">
-              {today.sunriseTime}
+              {today.sunrise}
             </Moment>
           </Card>
           <Card icon={'sunset'} label={'sunset'}>
             <Moment unix format="hh:mm">
-              {today.sunsetTime}
+              {today.sunset}
             </Moment>
           </Card>
         </Row>
       </Column>
 
       <Column>
-        <Header title={`TODAY'S FORECAST`} content={today.summary} />
-        <Icon name={today.icon} />
+        <Header title={`TODAY'S FORECAST`} content={today.weather[0].description} />
+        <Icon name={today.weather[0].icon} />
       </Column>
     </Hero>
   );
